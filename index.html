@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои Социальные сети — arella_sailen</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            background: #0a0a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .stars-layer {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .shooting-star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            animation: shoot linear infinite;
+        }
+
+        .shooting-star::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(to left, rgba(255,255,255,0.6), transparent);
+            transform-origin: right;
+            transform: rotate(0deg);
+        }
+
+        @keyframes shoot {
+            0% { transform: translate(0, 0); opacity: 1; }
+            70% { opacity: 1; }
+            100% { transform: translate(-400px, 200px); opacity: 0; }
+        }
+
+        .nebula {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .nebula:nth-child(1) {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(120, 50, 200, 0.15), transparent 70%);
+            top: -150px; right: -100px;
+        }
+
+        .nebula:nth-child(2) {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(50, 100, 220, 0.1), transparent 70%);
+            bottom: -100px; left: -80px;
+        }
+
+        .nebula:nth-child(3) {
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(200, 50, 120, 0.08), transparent 70%);
+            top: 40%; left: 50%;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 460px;
+            animation: fadeUp 0.8s ease-out;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .avatar-wrapper {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(135deg, #7c3aed, #ec4899, #06b6d4);
+            box-shadow: 0 0 30px rgba(124, 58, 237, 0.3), 0 0 60px rgba(236, 72, 153, 0.15);
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            background: linear-gradient(135deg, #7c3aed, #ec4899);
+        }
+
+        .profile-name {
+            font-size: 28px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        .profile-subtitle {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .link-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 16px;
+            text-decoration: none;
+            color: #ffffff;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            animation: fadeUp 0.8s ease-out both;
+        }
+
+        .link-card:nth-child(1) { animation-delay: 0.1s; }
+        .link-card:nth-child(2) { animation-delay: 0.15s; }
+        .link-card:nth-child(3) { animation-delay: 0.2s; }
+        .link-card:nth-child(4) { animation-delay: 0.25s; }
+        .link-card:nth-child(5) { animation-delay: 0.3s; }
+        .link-card:nth-child(6) { animation-delay: 0.35s; }
+        .link-card:nth-child(7) { animation-delay: 0.4s; }
+        .link-card:nth-child(8) { animation-delay: 0.45s; }
+
+        .link-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: left 0.5s;
+        }
+
+        .link-card:hover::before {
+            left: 100%;
+        }
+
+        .link-card:hover {
+            transform: translateY(-3px) scale(1.02);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(124, 58, 237, 0.1);
+        }
+
+        .link-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+            transition: transform 0.3s;
+        }
+
+        .link-card:hover .link-icon {
+            transform: scale(1.1);
+        }
+
+        .link-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .link-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .link-handle {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.45);
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .link-arrow {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s;
+        }
+
+        .link-card:hover .link-arrow {
+            color: rgba(255, 255, 255, 0.8);
+            transform: translateX(4px);
+        }
+
+        .tg-icon { background: linear-gradient(135deg, #2AABEE, #1E88D4); }
+        .likee-icon { background: linear-gradient(135deg, #FF4F64, #FF8A65); }
+        .youtube-icon { background: linear-gradient(135deg, #FF0000, #CC0000); }
+        .tiktok-icon { background: linear-gradient(135deg, #000000, #333333); border: 1px solid rgba(255,255,255,0.15); }
+        .vk-icon { background: linear-gradient(135deg, #0077FF, #0066DD); }
+        .insta-icon { background: linear-gradient(135deg, #F58529, #DD2A7B, #8134AF); }
+        .snap-icon { background: linear-gradient(135deg, #FFFC00, #F7DC00); color: #333 !important; }
+        .mail-icon { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+
+        .email-card {
+            margin-top: 8px;
+            background: rgba(99, 102, 241, 0.06);
+            border-color: rgba(99, 102, 241, 0.12);
+        }
+
+        .email-card:hover {
+            background: rgba(99, 102, 241, 0.12);
+            border-color: rgba(99, 102, 241, 0.25);
+        }
+
+        .email-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 36px;
+            padding: 16px;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .footer span {
+            background: linear-gradient(135deg, #7c3aed, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        @media (max-width: 480px) {
+            .profile-name { font-size: 24px; }
+            .avatar-wrapper { width: 100px; height: 100px; }
+            .link-card { padding: 14px 16px; }
+            .link-icon { width: 42px; height: 42px; font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nebula"></div>
+    <div class="nebula"></div>
+    <div class="nebula"></div>
+
+    <div class="stars-layer" id="starsLayer"></div>
+
+    <div class="container">
+        <div class="profile-header">
+            <div class="avatar-wrapper">
+                <img class="avatar" src="https://img.like.video/eu_live/9uz/1w5Paj00m2EfDMg20V2Ua_4.jpg?type=20&auth-token=7O5mE6Bl4Fhc9sNqXUancedu-baUFH65KzxbdHTLwTI:eyJleHBpcmUiOjE3ODAwODM3ODQsImFwcGlkIjo0OCwic2VydmljZS1uYW1lIjoibGlrZWUtYWN0aXZpdHktZmxvdy1taWNybyJ9" alt="arella.sailen avatar">
+            </div>
+            <h1 class="profile-name">arella_sailen</h1>
+            <p class="profile-subtitle">Мои Социальные сети</p>
+        </div>
+
+        <div class="links-list">
+
+            <a href="https://t.me/arella_sailen" target="_blank" rel="noopener" class="link-card">
+                <div class="link-icon tg-icon"><i class="fa-brands fa-telegram"></i></div>
+                <div class="link-info">
+                    <div class="link-name">Telegram</div>
+                    <div class="link-handle">@arella_sailen</div>
+                </div>
+                <div class="link-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://l.likee.video/p/JDBMYP" target="_blank" rel="noopener" class="link-card">
+                <div class="link-icon likee-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                <div class="link-info">
+                    <div class="link-name">Likee</div>
+                    <div class="link-handle">@arella_sailen</div>
+                </div>
+                <div class="link-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://youtube.com/@arellasailen" target="_blank" rel="noopener" class="link-card">
+                <div class="link-icon youtube-icon"><i class="fa-brands fa-youtube"></i></div>
+                <div class="link-info">
+                    <div class="link-name">YouTube</div>
+                    <div class="link-handle">@arellasailen</div>
+                </div>
+                <div class="link-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://www.tiktok.com/@arella.sailen" target="_blank" rel="noopener" class="link-card">
+                <div class="link-icon tiktok-icon"><i class="fa-brands fa-tiktok"></i></div>
+                <div class="link-info">
+                    <div class="link-name">TikTok</div>
+                    <div class="link-handle">@arella.sailen</div>
+                </div>
+                <div class="link-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://vk.ru/arella_sailen" target="_blank" rel="noopener" class="link-card">
+                <div class="link-icon vk-icon"><i class="fa-brands fa-vk"></i></div>
+                <div class="link-info">
+                    <div class="link-name">ВКонтакте</div>
+                    <div class="link-handle">@arella_sailen</div>
+                </div>
+                <div class="link-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://www.instagram.com/arella_sailen" target="_blank" rel="noopener" class="link-card">
+                <div class="link-icon insta-icon"><i class="fa-brands fa-instagram"></i></div>
+                <div class="link-info">
+                    <div class="link-name">Instagram</div>
+                    <div class="link-handle">@arella_sailen</div>
+                </div>
+                <div class="link-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://snapchat.com/t/nkhK6RrZ" target="_blank" rel="noopener" class="link-card">
+                <div class="link-icon snap-icon"><i class="fa-brands fa-snapchat"></i></div>
+                <div class="link-info">
+                    <div class="link-name">Snapchat</div>
+                    <div class="link-handle">@arella.sailen</div>
+                </div>
+                <div class="link-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="mailto:arel.sailen@mail.ru" class="link-card email-card">
+                <div class="link-icon mail-icon"><i class="fa-solid fa-envelope"></i></div>
+                <div class="link-info">
+                    <div class="email-label">Сотрудничество / реклама</div>
+                    <div class="link-name" style="font-size:14px;">arel.sailen@mail.ru</div>
+                </div>
+                <div class="link-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+        </div>
+
+        <div class="footer">
+            © 2026 <span>arella_sailen</span> — Все права защищены
+        </div>
+    </div>
+
+    <script>
+        const starsLayer = document.getElementById('starsLayer');
+
+        // Генерация обычных звёзд
+        const totalStars = 200;
+        for (let i = 0; i < totalStars; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            const size = Math.random() * 2.5 + 0.5;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            const dur = Math.random() * 4 + 2;
+            star.style.animationDuration = dur + 's';
+            star.style.animationDelay = Math.random() * 4 + 's';
+            // Немного разных оттенков для звёзд
+            const hue = Math.random() > 0.7 ? Math.floor(Math.random() * 60 + 200) : 0;
+            const sat = hue > 0 ? '60%' : '0%';
+            star.style.background = `hsl(${hue}, ${sat}, ${Math.floor(Math.random() * 20 + 80)}%)`;
+            starsLayer.appendChild(star);
+        }
+        // Падающие звёзды
+        function createShootingStar() {
+            const shootingStar = document.createElement('div');
+            shootingStar.classList.add('shooting-star');
+            shootingStar.style.top = Math.random() * 50 + '%';
+            shootingStar.style.right = '-100px';
+            const dur = Math.random() * 1.5 + 1;
+            shootingStar.style.animationDuration = dur + 's';
+            starsLayer.appendChild(shootingStar);
+            setTimeout(() => shootingStar.remove(), dur * 1000 + 200);
+        }
+        setInterval(createShootingStar, 3500);
+        setTimeout(createShootingStar, 1000);
+        setTimeout(createShootingStar, 2000);
+        // Ripple эффект
+        document.querySelectorAll('.link-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                const rect = this.getBoundingClientRect();
+                const ripple = document.createElement('div');
+                const size = Math.max(rect.width, rect.height);
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    border-radius: 50%;
+                    background: rgba(255,255,255,0.12);
+                    transform: scale(0);
+                    animation: rippleEffect 0.6s ease-out;
+                    left: ${e.clientX - rect.left - size / 2}px;
+                    top: ${e.clientY - rect.top - size / 2}px;
+                    pointer-events: none;
+                `;
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = `@keyframes rippleEffect { to { transform: scale(2.5); opacity: 0; } }`;
+        document.head.appendChild(styleSheet);
+    </script>
+</body>
+</html>
+
