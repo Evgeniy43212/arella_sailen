@@ -7,13 +7,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
@@ -24,7 +22,6 @@
             padding: 20px;
             overflow-x: hidden;
         }
-
         .stars-layer {
             position: fixed;
             top: 0; left: 0;
@@ -32,7 +29,6 @@
             pointer-events: none;
             z-index: 0;
         }
-
         .star {
             position: absolute;
             background: #fff;
@@ -44,7 +40,6 @@
             0%, 100% { opacity: 0.2; transform: scale(0.8); }
             50% { opacity: 1; transform: scale(1.2); }
         }
-
         .shooting-star {
             position: absolute;
             width: 2px;
@@ -53,7 +48,6 @@
             border-radius: 50%;
             animation: shoot linear infinite;
         }
-
         .shooting-star::after {
             content: '';
             position: absolute;
@@ -65,13 +59,11 @@
             transform-origin: right;
             transform: rotate(0deg);
         }
-
         @keyframes shoot {
             0% { transform: translate(0, 0); opacity: 1; }
             70% { opacity: 1; }
             100% { transform: translate(-400px, 200px); opacity: 0; }
         }
-
         .nebula {
             position: fixed;
             border-radius: 50%;
@@ -79,25 +71,21 @@
             pointer-events: none;
             z-index: 0;
         }
-
         .nebula:nth-child(1) {
             width: 500px; height: 500px;
             background: radial-gradient(circle, rgba(120, 50, 200, 0.15), transparent 70%);
             top: -150px; right: -100px;
         }
-
         .nebula:nth-child(2) {
             width: 400px; height: 400px;
             background: radial-gradient(circle, rgba(50, 100, 220, 0.1), transparent 70%);
             bottom: -100px; left: -80px;
         }
-
         .nebula:nth-child(3) {
             width: 300px; height: 300px;
             background: radial-gradient(circle, rgba(200, 50, 120, 0.08), transparent 70%);
             top: 40%; left: 50%;
         }
-
         .container {
             position: relative;
             z-index: 1;
@@ -105,17 +93,14 @@
             max-width: 460px;
             animation: fadeUp 0.8s ease-out;
         }
-
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         .profile-header {
             text-align: center;
             margin-bottom: 32px;
         }
-
         .avatar-wrapper {
             width: 120px;
             height: 120px;
@@ -125,7 +110,6 @@
             background: linear-gradient(135deg, #7c3aed, #ec4899, #06b6d4);
             box-shadow: 0 0 30px rgba(124, 58, 237, 0.3), 0 0 60px rgba(236, 72, 153, 0.15);
         }
-
         .avatar {
             width: 100%;
             height: 100%;
@@ -134,7 +118,6 @@
             display: block;
             background: linear-gradient(135deg, #7c3aed, #ec4899);
         }
-
         .profile-name {
             font-size: 28px;
             font-weight: 800;
@@ -142,7 +125,6 @@
             margin-bottom: 6px;
             letter-spacing: -0.5px;
         }
-
         .profile-subtitle {
             font-size: 14px;
             color: rgba(255, 255, 255, 0.5);
@@ -150,13 +132,11 @@
             letter-spacing: 2px;
             text-transform: uppercase;
         }
-
         .links-list {
             display: flex;
             flex-direction: column;
             gap: 14px;
         }
-
         .link-card {
             display: flex;
             align-items: center;
@@ -174,7 +154,6 @@
             overflow: hidden;
             animation: fadeUp 0.8s ease-out both;
         }
-
         .link-card:nth-child(1) { animation-delay: 0.1s; }
         .link-card:nth-child(2) { animation-delay: 0.15s; }
         .link-card:nth-child(3) { animation-delay: 0.2s; }
@@ -183,7 +162,7 @@
         .link-card:nth-child(6) { animation-delay: 0.35s; }
         .link-card:nth-child(7) { animation-delay: 0.4s; }
         .link-card:nth-child(8) { animation-delay: 0.45s; }
-
+        .link-card:nth-child(9) { animation-delay: 0.5s; }
         .link-card::before {
             content: '';
             position: absolute;
@@ -192,18 +171,15 @@
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
             transition: left 0.5s;
         }
-
         .link-card:hover::before {
             left: 100%;
         }
-
         .link-card:hover {
             transform: translateY(-3px) scale(1.02);
             background: rgba(255, 255, 255, 0.08);
             border-color: rgba(255, 255, 255, 0.12);
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(124, 58, 237, 0.1);
         }
-
         .link-icon {
             width: 46px;
             height: 46px;
@@ -214,8 +190,14 @@
             font-size: 20px;
             flex-shrink: 0;
             transition: transform 0.3s;
+            overflow: hidden;
         }
-
+        .link-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
         .link-card:hover .link-icon {
             transform: scale(1.1);
         }
@@ -224,13 +206,11 @@
             flex: 1;
             min-width: 0;
         }
-
         .link-name {
             font-size: 16px;
             font-weight: 700;
             margin-bottom: 2px;
         }
-
         .link-handle {
             font-size: 12px;
             color: rgba(255, 255, 255, 0.45);
@@ -239,18 +219,15 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-
         .link-arrow {
             font-size: 14px;
             color: rgba(255, 255, 255, 0.3);
             transition: all 0.3s;
         }
-
         .link-card:hover .link-arrow {
             color: rgba(255, 255, 255, 0.8);
             transform: translateX(4px);
         }
-
         .tg-icon { background: linear-gradient(135deg, #2AABEE, #1E88D4); }
         .likee-icon { background: linear-gradient(135deg, #FF4F64, #FF8A65); }
         .youtube-icon { background: linear-gradient(135deg, #FF0000, #CC0000); }
@@ -259,18 +236,16 @@
         .insta-icon { background: linear-gradient(135deg, #F58529, #DD2A7B, #8134AF); }
         .snap-icon { background: linear-gradient(135deg, #FFFC00, #F7DC00); color: #333 !important; }
         .mail-icon { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
-
+        .max-icon { background: linear-gradient(135deg, #1a1a1a, #000000); border: 1px solid rgba(255,255,255,0.12); }
         .email-card {
             margin-top: 8px;
             background: rgba(99, 102, 241, 0.06);
             border-color: rgba(99, 102, 241, 0.12);
         }
-
         .email-card:hover {
             background: rgba(99, 102, 241, 0.12);
             border-color: rgba(99, 102, 241, 0.25);
         }
-
         .email-label {
             font-size: 11px;
             color: rgba(255, 255, 255, 0.4);
@@ -279,7 +254,6 @@
             font-weight: 600;
             margin-bottom: 4px;
         }
-
         .footer {
             text-align: center;
             margin-top: 36px;
@@ -288,7 +262,6 @@
             font-size: 12px;
             font-weight: 500;
         }
-
         .footer span {
             background: linear-gradient(135deg, #7c3aed, #ec4899);
             -webkit-background-clip: text;
@@ -296,7 +269,6 @@
             background-clip: text;
             font-weight: 700;
         }
-
         @media (max-width: 480px) {
             .profile-name { font-size: 24px; }
             .avatar-wrapper { width: 100px; height: 100px; }
@@ -306,13 +278,10 @@
     </style>
 </head>
 <body>
-
     <div class="nebula"></div>
     <div class="nebula"></div>
     <div class="nebula"></div>
-
     <div class="stars-layer" id="starsLayer"></div>
-
     <div class="container">
         <div class="profile-header">
             <div class="avatar-wrapper">
@@ -321,9 +290,17 @@
             <h1 class="profile-name">arella_sailen</h1>
             <p class="profile-subtitle">Мои Социальные сети</p>
         </div>
-
         <div class="links-list">
-
+           <a href="https://max.ru/arella_sailen" target="_blank" rel="noopener" class="link-card">
+                <div class="link-icon max-icon">
+                    <img src="https://i.cdn01.ru/files/users/images/78/4d/784de61f4b2303d23660b4db5a63f6a0.jpg" alt="MAX">
+                </div>
+                <div class="link-info">
+                    <div class="link-name">MAX</div>
+                    <div class="link-handle">@arella_sailen</div>
+                </div>
+                <div class="link-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
             <a href="https://t.me/arella_sailen" target="_blank" rel="noopener" class="link-card">
                 <div class="link-icon tg-icon"><i class="fa-brands fa-telegram"></i></div>
                 <div class="link-info">
@@ -332,16 +309,16 @@
                 </div>
                 <div class="link-arrow"><i class="fa-solid fa-arrow-right"></i></div>
             </a>
-
-            <a href="https://l.likee.video/p/JDBMYP" target="_blank" rel="noopener" class="link-card">
-                <div class="link-icon likee-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+             <a href="https://likee.video/p/k4pWEH?lang=ru" target="_blank" rel="noopener" class="link-card">
+                <div class="link-icon max-icon">
+                    <img src="https://i.pinimg.com/originals/d3/f6/a0/d3f6a08e5cde936ae99ab1cb5dfc2943.jpg?nii=t" alt="MAX">
+                </div>
                 <div class="link-info">
                     <div class="link-name">Likee</div>
                     <div class="link-handle">@arella_sailen</div>
                 </div>
                 <div class="link-arrow"><i class="fa-solid fa-arrow-right"></i></div>
             </a>
-
             <a href="https://youtube.com/@arellasailen" target="_blank" rel="noopener" class="link-card">
                 <div class="link-icon youtube-icon"><i class="fa-brands fa-youtube"></i></div>
                 <div class="link-info">
@@ -350,7 +327,6 @@
                 </div>
                 <div class="link-arrow"><i class="fa-solid fa-arrow-right"></i></div>
             </a>
-
             <a href="https://www.tiktok.com/@arella.sailen" target="_blank" rel="noopener" class="link-card">
                 <div class="link-icon tiktok-icon"><i class="fa-brands fa-tiktok"></i></div>
                 <div class="link-info">
@@ -359,7 +335,6 @@
                 </div>
                 <div class="link-arrow"><i class="fa-solid fa-arrow-right"></i></div>
             </a>
-
             <a href="https://vk.ru/arella_sailen" target="_blank" rel="noopener" class="link-card">
                 <div class="link-icon vk-icon"><i class="fa-brands fa-vk"></i></div>
                 <div class="link-info">
@@ -368,7 +343,6 @@
                 </div>
                 <div class="link-arrow"><i class="fa-solid fa-arrow-right"></i></div>
             </a>
-
             <a href="https://www.instagram.com/arella_sailen" target="_blank" rel="noopener" class="link-card">
                 <div class="link-icon insta-icon"><i class="fa-brands fa-instagram"></i></div>
                 <div class="link-info">
@@ -377,7 +351,6 @@
                 </div>
                 <div class="link-arrow"><i class="fa-solid fa-arrow-right"></i></div>
             </a>
-
             <a href="https://snapchat.com/t/nkhK6RrZ" target="_blank" rel="noopener" class="link-card">
                 <div class="link-icon snap-icon"><i class="fa-brands fa-snapchat"></i></div>
                 <div class="link-info">
@@ -386,7 +359,6 @@
                 </div>
                 <div class="link-arrow"><i class="fa-solid fa-arrow-right"></i></div>
             </a>
-
             <a href="mailto:arel.sailen@mail.ru" class="link-card email-card">
                 <div class="link-icon mail-icon"><i class="fa-solid fa-envelope"></i></div>
                 <div class="link-info">
@@ -395,18 +367,14 @@
                 </div>
                 <div class="link-arrow"><i class="fa-solid fa-arrow-right"></i></div>
             </a>
-
         </div>
-
         <div class="footer">
             © 2026 <span>arella_sailen</span> — Все права защищены
         </div>
     </div>
-
     <script>
         const starsLayer = document.getElementById('starsLayer');
-
-        // Генерация обычных звёзд
+        // обычные звёзд
         const totalStars = 200;
         for (let i = 0; i < totalStars; i++) {
             const star = document.createElement('div');
@@ -419,7 +387,6 @@
             const dur = Math.random() * 4 + 2;
             star.style.animationDuration = dur + 's';
             star.style.animationDelay = Math.random() * 4 + 's';
-            // Немного разных оттенков для звёзд
             const hue = Math.random() > 0.7 ? Math.floor(Math.random() * 60 + 200) : 0;
             const sat = hue > 0 ? '60%' : '0%';
             star.style.background = `hsl(${hue}, ${sat}, ${Math.floor(Math.random() * 20 + 80)}%)`;
@@ -461,11 +428,9 @@
                 setTimeout(() => ripple.remove(), 600);
             });
         });
-
         const styleSheet = document.createElement('style');
         styleSheet.textContent = `@keyframes rippleEffect { to { transform: scale(2.5); opacity: 0; } }`;
         document.head.appendChild(styleSheet);
     </script>
 </body>
 </html>
-
